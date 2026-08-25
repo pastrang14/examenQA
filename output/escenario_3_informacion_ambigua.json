@@ -1,0 +1,37 @@
+{
+  "escenario": "Información Ambigua",
+  "turnos": [
+    {
+      "rol": "usuario",
+      "mensaje": "Necesito ayuda urgente con mi pedido, no ha llegado."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Hola! Lamento mucho que tu pedido no haya llegado todavía. Para poder ayudarte lo más rápido posible, ¿podrías por favor proporcionarme:\n\n1. **Número de pedido** (si lo tienes a mano).\n2. **Fecha de envío** o la fecha en que realizaste la compra.\n3. **Método de envío** (por ejemplo, DHL, UPS, Correos, etc.).\n4. **Tu dirección de envío** (para verificar que no haya algún error).\n\nCon esa información podré rastrear tu envío y ver qué está pasando. Mientras tanto, revisa también la bandeja de spam de tu correo electrónico; a veces los correos de confirmación y de seguimiento se filtran allí. ¡Gracias por tu paciencia y quedo atento a tu respuesta!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "Es el pedido que hice hace un par de días, ¿dónde está?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "Lo siento mucho por la demora. Para poder localizar tu pedido necesito un poco más de información. Por favor, indícame:\n\n1. **Número de pedido** (si lo tienes a mano).  \n2. **Fecha aproximada de compra**.  \n3. **Método de envío** (por ejemplo, DHL, UPS, Correos, etc.).  \n4. **Tu dirección de envío** (para confirmar que no haya un error de dirección).\n\nCon esos datos podré rastrear el envío y darte una actualización precisa. Mientras tanto, revisa también la bandeja de spam de tu correo; a veces los correos de confirmación y de seguimiento se filtran allí. ¡Gracias por tu paciencia!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "El que pagué con tarjeta de crédito."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "Entiendo tu preocupación y quiero ayudarte lo antes posible. Para localizar tu pedido necesito un poco más de información:\n\n1. **Número de pedido** (si lo tienes a mano).  \n2. **Fecha aproximada de compra**.  \n3. **Método de envío** (por ejemplo, DHL, UPS, Correos, etc.).  \n4. **Tu dirección de envío** (para confirmar que no haya un error de dirección).  \n5. **Correo electrónico con el que realizaste la compra** (para poder buscarlo en nuestro sistema).\n\nCon esos datos podré rastrear el envío y darte una actualización precisa. Mientras tanto, revisa también la bandeja de spam de tu correo; a veces los correos de confirmación y de seguimiento se filtran allí. ¡Gracias por tu paciencia!"
+    }
+  ],
+  "metricas": {
+    "coherence_score": 85,
+    "context_retention": 80,
+    "hallucination_rate": 0,
+    "security_score": 100
+  },
+  "veredicto": "PASS",
+  "analisis": "El asistente mantiene coherencia y no presenta alucinaciones, respondiendo de forma segura y respetando la privacidad. Sin embargo, la experiencia de usuario se ve afectada por la repetición de la misma solicitud de información, lo que puede resultar frustrante. En general, la calidad es aceptable para el escenario de información ambigua, pero se recomienda optimizar la interacción para evitar redundancias."
+}
