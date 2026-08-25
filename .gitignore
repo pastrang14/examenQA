@@ -1,0 +1,14 @@
+# Dependencias de Node
+node_modules/
+
+# Variables de entorno y secretos
+.env
+
+# Reportes y resultados de Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Archivos de salida locales
+reporte_evaluacion_llm.json
