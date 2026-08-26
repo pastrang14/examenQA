@@ -1,38 +1,28 @@
 import { test, expect } from '@playwright/test';
 
-// Leemos la URL base desde las variables de entorno
 const BASE_URL = process.env.GOAL_TRACKER_BASE_URL || 'https://goal-tracker-api.onrender.com';
 
-// Usamos 'test.describe.serial' para obligar a Playwright a ejecutar las pruebas
-// una detrás de otra en orden estricto, ya que el Login depende del Registro.
 test.describe.serial('Goal Tracker API Test Suite', () => {
 
-  // Declaramos variables que necesitamos compartir entre las diferentes pruebas
   const userName = 'Guillermo QA';
   const userPassword = 'Password123!';
-  
-  // Generamos un correo único agregando los milisegundos actuales al string
   const userEmail = `qa_user_${Date.now()}@test.com`; 
   
-  let authToken = ''; // Aquí guardaremos el token cuando el login sea exitoso
+  let authToken = '';
+  let firstGoalId = '';
+  let secondGoalId = '';
 
-  // FASE 1: HEALTH CHECK ---
+  // --- FASE 1: HEALTH CHECK ---
   test('Health Check - GET /api/v1/status', async ({ request }) => {
-    //Aqui hacemos uso del metodo get, con nuestra cosntante declarada en la linea 4
     const response = await request.get(`${BASE_URL}/api/v1/status`);
-    //Aqui hacemos la validacion del servicio
     expect(response.status()).toBe(200);
 
-    //usamos la respuesta y le damos el formato json con la funcion .json, asignamos al body
     const body = await response.json();
-    //aqui se hace la segunda asercion, si se obtiene un DOWN, Maintenance, nos dara problema
     expect(body.status).toBe('OPERATIONAL');
   });
 
-
-  // REGISTRO DE USUARIO ---
+  // --- FASE 2: REGISTRO Y LOGIN ---
   test('Registro - POST /api/v1/auth/register', async ({ request }) => {
-    // Enviamos los datos en formato JSON dentro de la propiedad 'data'
     const response = await request.post(`${BASE_URL}/api/v1/auth/register`, {
       data: {
         name: userName,
@@ -40,56 +30,79 @@ test.describe.serial('Goal Tracker API Test Suite', () => {
         password: userPassword
       }
     });
-
-    // Validamos que el servidor responda con código 201 (Created)
     expect(response.status()).toBe(201);
     
-    // Validamos que el cuerpo de la respuesta devuelva los datos correctos
     const body = await response.json();
-    //console.log(body)
     expect(body.user.name).toBe(userName);
     expect(body.user.email).toBe(userEmail);
   });
 
-
-  // LOGIN POSITIVO ---
-  test('Login Positivo - POST ', async ({ request }) => {
+  test('Login Positivo - POST /api/v1/auth/login', async ({ request }) => {
     const response = await request.post(`${BASE_URL}/api/v1/auth/login`, {
       data: {
         email: userEmail,
         password: userPassword
       }
     });
-
-    // Validamos que el inicio de sesión sea exitoso (Status 200)
     expect(response.status()).toBe(200); 
     
     const body = await response.json();
-    
-    // Verificamos que el servidor nos entregó un token y lo almacenamos en memoria
     expect(body.token).toBeDefined();
     authToken = body.token;
   });
 
-
-
-  // FASE 2.2: LOGIN NEGATIVO ---
-  test('Login Negativo - POST ', async ({ request }) => {
-    // Intentamos iniciar sesión con credenciales falsas a propósito
+  test('Login Negativo - POST /api/v1/auth/login', async ({ request }) => {
     const response = await request.post(`${BASE_URL}/api/v1/auth/login`, {
       data: {
         email: 'correo_que_no_existe@test.com',
         password: 'ClaveIncorrecta'
       }
     });
-
-    // Una credencial inválida DEBE ser rechazada con status 401 (Unauthorized)
     expect(response.status()).toBe(401);
     
-    // Validamos el mensaje de error exacto que exige la documentación de la API
     const body = await response.json();
     expect(body.msg).toBe('Invalid Credentials');
   });
 
-  
+  // --- FASE 3: CREACIÓN DE GOALS ---
+  test('Crear Primer Goal - POST /api/v1/goals', async ({ request }) => {
+    const goalData = {
+      title: 'Dominar la automatización de APIs',
+      description: 'Aprender a depurar errores de validación de datos'
+    };
+
+    const response = await request.post(`${BASE_URL}/api/v1/goals`, {
+      headers: { 'Authorization': `Bearer ${authToken}` },
+      data: goalData
+    });
+
+    expect([200, 201]).toContain(response.status());
+    
+    const body = await response.json();
+    
+    // Validaciones con la ruta correcta hacia el objeto 'goal'
+    expect(body.goal.title).toBe(goalData.title);
+    
+    const generatedId = body.goal._id || body.goal.id;
+    expect(generatedId).toBeDefined();
+    expect(body.goal.createdAt).toBeDefined();
+    
+    firstGoalId = generatedId;
+  });
+
+  test('Crear Segundo Goal - POST /api/v1/goals', async ({ request }) => {
+    const response = await request.post(`${BASE_URL}/api/v1/goals`, {
+      headers: { 'Authorization': `Bearer ${authToken}` },
+      data: {
+        title: 'Completar suite de pruebas',
+        description: 'Finalizar los endpoints de consulta y eliminación'
+      }
+    });
+
+    expect([200, 201]).toContain(response.status());
+    
+    const body = await response.json();
+    secondGoalId = body.goal._id || body.goal.id;
+  });
+
 });
