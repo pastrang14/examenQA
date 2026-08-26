@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
-// Función de utilidad para pausar la ejecución (Throttling)
+// Funciónpara pausar la ejecución (Throttling)
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 /**
  * Función que simula la conversación dinámica de 6 turnos.
