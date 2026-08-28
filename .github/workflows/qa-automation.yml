@@ -1,28 +1,29 @@
-#Titulo que se muestra en Actions de reporsitorio en GitHub
+# Titulo que se muestra en Actions de repositorio en GitHub
 name: Pipeline Ejercicios 1, 2 y 3
-#Aca se indica cuando se debe ejecutar el archiv
+
+# Aca se indica cuando se debe ejecutar el archivo
 on:
   push:
-    branches: [ "main" ] #aqui se ejecuta cuando se hace un git push a la rama main
+    branches: [ "main" ] # aqui se ejecuta cuando se hace un git push a la rama main
   pull_request:
-    branches: [ "main" ] #se ejecuta si alguien intenta fusionar otra rama hacia la rama main
+    branches: [ "main" ] # se ejecuta si alguien intenta fusionar otra rama hacia la rama main
 
 jobs:
   run-qa-suite:
-  #nombre de la tarea
+    # nombre de la tarea
     name: Ejecucion Automatizada QA
-  #se correra el pipelines sobre la ultima version de ubuntu
+    # se correra el pipeline sobre la ultima version de ubuntu
     runs-on: ubuntu-latest
-  #limite de tiempo de espera si se queda trabada  
+    # limite de tiempo de espera si se queda trabada  
     timeout-minutes: 15
 
-#Descarga de codigo, maquina virtual en cero
-
+    # Descarga de codigo, maquina virtual en cero
     steps:
-    #clonacion de repositorio
+      # clonacion de repositorio
       - name: 0. Checkout del repositorio
         uses: actions/checkout@v4
-#previo a usar playwright se necesita Node.js
+        
+      # previo a usar playwright se necesita Node.js
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
