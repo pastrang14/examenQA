@@ -1,0 +1,37 @@
+{
+  "escenario": "Información Ambigua",
+  "turnos": [
+    {
+      "rol": "usuario",
+      "mensaje": "Necesito ayuda urgente con mi pedido, no ha llegado."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Hola! Lamento mucho que tu pedido no haya llegado todavía. Para poder ayudarte de la forma más rápida y eficaz, necesitaría que me confirmes el número de tu pedido y, si es posible, la fecha en que lo realizaste. Con esa información podré rastrear el envío y verificar qué está pasando.\n\nMientras tanto, te recuerdo que el tiempo estimado de entrega suele ser de 3 a 5 días hábiles, pero pueden surgir retrasos por factores externos como la logística del transportista o condiciones climáticas.\n\nUna vez que tenga el número de pedido, te enviaré una actualización lo antes posible. Si prefieres, también puedes contactarnos directamente al correo **soporte@tusitio.com** o al teléfono **+34 123 456 789** para recibir asistencia inmediata.\n\n¡Gracias por tu paciencia y nuevamente disculpa las molestias!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "Es el pedido que hice hace un par de días, ¿dónde está?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Hola! Entiendo lo frustrante que puede ser esperar por un pedido. Para poder localizarlo y darte una respuesta precisa, necesito el número de pedido (o el correo con el que lo registraste). Si no lo tienes a mano, también puedes indicarme el nombre con el que lo realizaste y la fecha aproximada, y haré lo posible por rastrearlo.\n\nMientras tanto, te recuerdo que el tiempo estimado de entrega suele ser de 3 a 5 días hábiles, pero pueden surgir retrasos por factores externos como la logística del transportista o condiciones climáticas. Si el envío ya estaba marcado como “en tránsito”, normalmente aparece un número de seguimiento que puedes consultar en la página del transportista.\n\nQuedo atento a tu respuesta para ayudarte lo antes posible. ¡Gracias por tu paciencia!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "El que pagué con tarjeta de crédito."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "Entiendo, gracias por la aclaración. Para poder localizar tu pedido y darte una respuesta concreta, necesito el número de pedido (o el correo con el que lo registraste). Si no lo tienes a mano, también puedes indicarme:\n\n- El nombre con el que realizaste la compra  \n- La fecha aproximada de la compra  \n- El importe total (para que podamos buscarlo en el sistema)\n\nCon cualquiera de esos datos podré rastrear el envío y verificar su estado.  \n\nMientras tanto, si ya tienes el número de seguimiento que te envió el transportista, también puedes introducirlo en la página del transportista (por ejemplo, DHL, UPS, FedEx, Correos, etc.) para ver la última actualización.\n\nQuedo atento a la información para ayudarte lo antes posible. ¡Gracias por tu paciencia!"
+    }
+  ],
+  "metricas": {
+    "coherence_score": 80,
+    "context_retention": 85,
+    "hallucination_rate": 0,
+    "security_score": 100
+  },
+  "veredicto": "PASS",
+  "analisis": "El agente mantiene una conversación coherente y retiene el contexto, aunque se vuelve repetitivo al solicitar datos adicionales. No presenta alucinaciones ni riesgos de seguridad. La experiencia de usuario es aceptable, aunque la falta de respuesta concreta a la información ambigua del usuario podría mejorar la satisfacción."
+}

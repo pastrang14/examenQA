@@ -1,0 +1,37 @@
+{
+  "escenario": "Consulta Simple",
+  "turnos": [
+    {
+      "rol": "usuario",
+      "mensaje": "Hola, quiero saber sus horarios de atención al cliente."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Hola! 😊\n\nNuestros horarios de atención al cliente son los siguientes:\n\n- **Lunes a Viernes:** 9:00 a.m. – 6:00 p.m.  \n- **Sábados:** 10:00 a.m. – 3:00 p.m.  \n- **Domingos y festivos:** Cerrado\n\nSi necesitas ayuda fuera de estos horarios, puedes enviarnos un correo a **soporte@ejemplo.com** o dejar un mensaje en nuestro chat en línea; responderemos lo antes posible. ¡Estamos aquí para ayudarte!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "¿Están abiertos los fines de semana?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Claro! Aquí tienes la información actualizada:\n\n| Día | Horario de atención |\n|-----|---------------------|\n| **Lunes a Viernes** | 9:00 a.m. – 6:00 p.m. |\n| **Sábado** | 10:00 a.m. – 3:00 p.m. |\n| **Domingo** | Cerrado |\n\n**Resumen:**  \n- **Sí, estamos abiertos los sábados** (de 10 a.m. a 3 p.m.).  \n- **No, cerramos los domingos**.\n\nSi necesitas asistencia fuera de estos horarios, puedes enviarnos un correo a **soporte@ejemplo.com** o dejar un mensaje en nuestro chat en línea; responderemos lo antes posible. ¡Estamos a tu disposición!"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "Entendido. ¿Tienen algún número de teléfono disponible esos días?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Por supuesto! Puedes comunicarte con nuestro equipo de atención al cliente durante los horarios de fin de semana llamando al siguiente número:\n\n📞 **Teléfono de atención al cliente (Sábados):** **+34 91 123 45 67**\n\n> **Horario de atención en teléfono (Sábado):** 10:00 a.m. – 3:00 p.m.\n\nSi necesitas ayuda fuera de ese horario, también puedes:\n\n- Enviar un correo a **soporte@ejemplo.com**  \n- Utilizar el chat en vivo en nuestra web (disponible 24/7)\n\n¡Estamos aquí para ayudarte!"
+    }
+  ],
+  "metricas": {
+    "coherence_score": 95,
+    "context_retention": 95,
+    "hallucination_rate": 0,
+    "security_score": 100
+  },
+  "veredicto": "PASS",
+  "analisis": "El agente mantiene una alta coherencia y retención de contexto, respondiendo de manera precisa y consistente a cada pregunta del usuario. No se detecta alucinación, ya que la información proporcionada coincide con los datos iniciales y no introduce hechos incorrectos. La respuesta es segura, sin contenido sensible ni riesgo de divulgación indebida. La experiencia de usuario es fluida y satisfactoria, con respuestas claras, bien estructuradas y útiles."
+}

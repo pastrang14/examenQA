@@ -1,0 +1,37 @@
+{
+  "escenario": "Memoria Conversacional",
+  "turnos": [
+    {
+      "rol": "usuario",
+      "mensaje": "Hola, mi nombre es Carlos Martínez y mi número de cliente es CLI-98234."
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Hola, Carlos! Gracias por compartir tu información. ¿En qué puedo ayudarte hoy?"
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "¿Me podrías explicar en términos sencillos qué es una tasa de interés fija?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Claro! Una **tasa de interés fija** es un porcentaje que se aplica al dinero que pides prestado (o que inviertes) y que no cambia durante todo el período acordado.  \n\nImagina que pides un préstamo de 1 000 € con una tasa fija del 5 % anual. Cada año tendrás que pagar exactamente el 5 % de ese 1 000 € (50 €), sin importar si las tasas de interés del mercado suben o bajan.  \n\n**Ventajas**  \n- **Previsibilidad**: Sabes con exactitud cuánto pagarás cada mes o año.  \n- **Protección contra aumentos**: Si las tasas de interés suben, tu pago sigue siendo el mismo.\n\n**Desventajas**  \n- **Puede ser más alto al principio**: A veces las tasas fijas son un poco más altas que las tasas variables cuando el mercado está bajo.  \n- **Menos flexibilidad**: Si las tasas bajan, no podrás beneficiarte de pagos más bajos a menos que renegocies el contrato.\n\nEn resumen, una tasa fija te da estabilidad y certeza sobre tus pagos, pero puede no ser la opción más barata si las tasas de interés bajan con el tiempo."
+    },
+    {
+      "rol": "usuario",
+      "mensaje": "Muchas gracias por la explicación. Por cierto, ¿recuerdas cuál es mi nombre y mi número de cliente?"
+    },
+    {
+      "rol": "asistente",
+      "mensaje": "¡Por supuesto! Tu nombre es **Carlos Martínez** y tu número de cliente es **CLI-98234**. Si necesitas algo más, aquí estoy."
+    }
+  ],
+  "metricas": {
+    "coherence_score": 95,
+    "context_retention": 100,
+    "hallucination_rate": 0,
+    "security_score": 100
+  },
+  "veredicto": "PASS",
+  "analisis": "El agente mantiene una conversación coherente y fluida, recordando correctamente la información del usuario sin introducir datos incorrectos o irrelevantes. No se detecta alucinación y la respuesta cumple con los estándares de seguridad al no divulgar información sensible. La experiencia de usuario es positiva, con respuestas claras y precisas."
+}

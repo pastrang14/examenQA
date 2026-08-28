@@ -4,19 +4,22 @@ test.describe('Ejercicio 3 - Automatización de Chatbot Web', () => {
 
   test('Flujo completo del Chatbot: Carga, interacción y validación de respuesta', async ({ page }) => {
     
+//---------------Acceso al sitio y cargar un elemento dentro del sitio
     await test.step('1. Acceso al sitio', async () => {
       const url = 'https://botpress.com/docs/?utm_source=chatgpt.com';
       await page.goto(url);
       
-      // Esperar a que el DOM base y los scripts se estabilicen
-      await page.waitForLoadState('domcontentloaded');
       
+      await page.waitForLoadState('domcontentloaded');
+      //objeto page, hace uso de metodo locator para ubicar el h1 que posee ese texto de titutlo
       const mainTitle = page.locator('h1', { hasText: 'Botpress documentation' });
+      //ToBeVisible permite saber si la etiqueta aunque exista si se muestra en pixeles dentro de la pagina
       await expect(mainTitle).toBeVisible();
     });
 
+//--------------Abrir y cerrar botones
     await test.step('2. Interacción con los botones de abrir y cerrar', async () => {
-      // Usamos el input de texto como ancla porque es el elemento más estable del chat
+      
       const chatInput = page.getByPlaceholder('Ask a question...').first();
       const askDocsBtn = page.locator('button:has-text("Ask Docs"), button[aria-label="Open AI assistant"]').first();
       
