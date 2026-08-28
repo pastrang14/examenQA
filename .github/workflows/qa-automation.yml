@@ -1,0 +1,64 @@
+#Titulo que se muestra en Actions de reporsitorio en GitHub
+name: Pipeline Ejercicios 1, 2 y 3
+#Aca se indica cuando se debe ejecutar el archiv
+on:
+  push:
+    branches: [ "main" ] #aqui se ejecuta cuando se hace un git push a la rama main
+  pull_request:
+    branches: [ "main" ] #se ejecuta si alguien intenta fusionar otra rama hacia la rama main
+
+jobs:
+  run-qa-suite:
+  #nombre de la tarea
+    name: Ejecucion Automatizada QA
+  #se correra el pipelines sobre la ultima version de ubuntu
+    runs-on: ubuntu-latest
+  #limite de tiempo de espera si se queda trabada  
+    timeout-minutes: 15
+
+#Descarga de codigo, maquina virtual en cero
+
+    steps:
+    #clonacion de repositorio
+      - name: 0. Checkout del repositorio
+        uses: actions/checkout@v4
+#previo a usar playwright se necesita Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # --- INICIO DEL ORDEN REQUERIDO ---
+
+      - name: 1. Instalar dependencias
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: 2. Ejecutar Pruebas Web (Ejercicio 3)
+        run: npx playwright test tests/web/
+        continue-on-error: true
+
+      - name: 3. Ejecutar Pruebas API (Ejercicio 2)
+        run: npx playwright test tests/api/
+        continue-on-error: true
+
+      - name: 4. Ejecutar Pruebas Chatbot/LLM (Ejercicio 1)
+        run: npx playwright test tests/chatbot/
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_API_URL: ${{ secrets.GROQ_API_URL }}
+          MODELO_EVALUADO: ${{ secrets.MODELO_EVALUADO }}
+        continue-on-error: true
+
+      # --- FIN DEL ORDEN REQUERIDO ---
+
+      - name: 5. Generar reporte de ejecucion
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reporte-automatizacion
+          path: |
+            playwright-report/
+            output/
+          retention-days: 7
